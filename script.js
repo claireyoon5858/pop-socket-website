@@ -1,46 +1,127 @@
 // Product data
 const products = [
+    // Classic PopSockets
     {
         id: 1,
         name: "Classic Black PopSocket",
         description: "The original PopSocket in sleek black. Perfect for any phone.",
         price: 14.99,
-        image: "classic-black"
+        image: "classic-black",
+        type: "classic",
+        phoneCompatibility: ["iphone", "samsung", "google", "oneplus", "other"],
+        imageUrl: "https://images.unsplash.com/photo-1603314585442-ee3f5b80cdc7?w=400&h=400&fit=crop&crop=center"
     },
     {
         id: 2,
         name: "Rainbow Gradient PopSocket",
         description: "Vibrant rainbow gradient design that stands out from the crowd.",
         price: 16.99,
-        image: "rainbow-gradient"
+        image: "rainbow-gradient",
+        type: "classic",
+        phoneCompatibility: ["iphone", "samsung", "google", "oneplus", "other"],
+        imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&crop=center"
     },
     {
         id: 3,
         name: "Marble Pattern PopSocket",
         description: "Elegant marble pattern for a sophisticated look.",
         price: 18.99,
-        image: "marble-pattern"
+        image: "marble-pattern",
+        type: "classic",
+        phoneCompatibility: ["iphone", "samsung", "google", "oneplus", "other"],
+        imageUrl: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=400&fit=crop&crop=center"
     },
     {
         id: 4,
         name: "Glitter Gold PopSocket",
         description: "Sparkling gold glitter design for maximum glamour.",
         price: 19.99,
-        image: "glitter-gold"
+        image: "glitter-gold",
+        type: "classic",
+        phoneCompatibility: ["iphone", "samsung", "google", "oneplus", "other"],
+        imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&crop=center"
     },
     {
         id: 5,
         name: "Clear Transparent PopSocket",
         description: "Invisible grip that doesn't interfere with your phone's design.",
         price: 15.99,
-        image: "clear-transparent"
+        image: "clear-transparent",
+        type: "classic",
+        phoneCompatibility: ["iphone", "samsung", "google", "oneplus", "other"],
+        imageUrl: "https://images.unsplash.com/photo-1603314585442-ee3f5b80cdc7?w=400&h=400&fit=crop&crop=center"
     },
     {
         id: 6,
         name: "Neon Pink PopSocket",
         description: "Bold neon pink for those who love to make a statement.",
         price: 17.99,
-        image: "neon-pink"
+        image: "neon-pink",
+        type: "classic",
+        phoneCompatibility: ["iphone", "samsung", "google", "oneplus", "other"],
+        imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&crop=center"
+    },
+    
+    // MagSafe PopSockets
+    {
+        id: 7,
+        name: "MagSafe Black PopSocket",
+        description: "MagSafe compatible grip for iPhone 12 and newer. Magnetic attachment.",
+        price: 24.99,
+        image: "magsafe-black",
+        type: "magsafe",
+        phoneCompatibility: ["iphone"],
+        imageUrl: "https://images.unsplash.com/photo-1603314585442-ee3f5b80cdc7?w=400&h=400&fit=crop&crop=center"
+    },
+    {
+        id: 8,
+        name: "MagSafe Clear PopSocket",
+        description: "Transparent MagSafe grip that shows off your phone's design.",
+        price: 26.99,
+        image: "magsafe-clear",
+        type: "magsafe",
+        phoneCompatibility: ["iphone"],
+        imageUrl: "https://images.unsplash.com/photo-1603314585442-ee3f5b80cdc7?w=400&h=400&fit=crop&crop=center"
+    },
+    {
+        id: 9,
+        name: "MagSafe Rainbow PopSocket",
+        description: "Vibrant rainbow MagSafe grip with magnetic attachment.",
+        price: 28.99,
+        image: "magsafe-rainbow",
+        type: "magsafe",
+        phoneCompatibility: ["iphone"],
+        imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&crop=center"
+    },
+    {
+        id: 10,
+        name: "MagSafe Gold PopSocket",
+        description: "Premium gold MagSafe grip for iPhone users.",
+        price: 29.99,
+        image: "magsafe-gold",
+        type: "magsafe",
+        phoneCompatibility: ["iphone"],
+        imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&crop=center"
+    },
+    {
+        id: 11,
+        name: "MagSafe Marble PopSocket",
+        description: "Elegant marble pattern MagSafe grip with magnetic attachment.",
+        price: 27.99,
+        image: "magsafe-marble",
+        type: "magsafe",
+        phoneCompatibility: ["iphone"],
+        imageUrl: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=400&fit=crop&crop=center"
+    },
+    {
+        id: 12,
+        name: "MagSafe Glitter PopSocket",
+        description: "Sparkling glitter MagSafe grip for maximum style.",
+        price: 30.99,
+        image: "magsafe-glitter",
+        type: "magsafe",
+        phoneCompatibility: ["iphone"],
+        imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&crop=center"
     }
 ];
 
@@ -65,19 +146,27 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Load products into the grid
-function loadProducts() {
+function loadProducts(filteredProducts = null) {
     productGrid.innerHTML = '';
     
-    products.forEach(product => {
+    const productsToShow = filteredProducts || products;
+    
+    productsToShow.forEach(product => {
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
         productCard.innerHTML = `
             <div class="product-image">
-                <div class="product-color" style="background: ${getProductColor(product.image)};"></div>
+                <img src="${product.imageUrl}" alt="${product.name}" onerror="this.style.display='none'">
+                <div class="product-badge ${product.type === 'magsafe' ? 'magsafe-badge' : ''}">
+                    ${product.type === 'magsafe' ? '<i class="fas fa-magnet"></i> MagSafe' : 'Classic'}
+                </div>
             </div>
             <div class="product-info">
                 <h3 class="product-title">${product.name}</h3>
                 <p class="product-description">${product.description}</p>
+                <div class="product-compatibility">
+                    <small>Compatible with: ${getCompatibilityText(product.phoneCompatibility)}</small>
+                </div>
                 <div class="product-price">$${product.price.toFixed(2)}</div>
                 <button class="add-to-cart" onclick="addToCart(${product.id})">
                     Add to Cart
@@ -86,6 +175,47 @@ function loadProducts() {
         `;
         productGrid.appendChild(productCard);
     });
+}
+
+// Get compatibility text
+function getCompatibilityText(compatibility) {
+    const compatibilityMap = {
+        'iphone': 'iPhone',
+        'samsung': 'Samsung',
+        'google': 'Google Pixel',
+        'oneplus': 'OnePlus',
+        'other': 'Other Android'
+    };
+    
+    if (compatibility.includes('iphone') && compatibility.includes('samsung') && compatibility.includes('google') && compatibility.includes('oneplus') && compatibility.includes('other')) {
+        return 'All Phones';
+    }
+    
+    return compatibility.map(phone => compatibilityMap[phone]).join(', ');
+}
+
+// Filter products function
+function filterProducts() {
+    const phoneFilter = document.getElementById('phone-filter').value;
+    const gripFilter = document.getElementById('grip-filter').value;
+    
+    let filteredProducts = products;
+    
+    // Filter by phone type
+    if (phoneFilter !== 'all') {
+        filteredProducts = filteredProducts.filter(product => 
+            product.phoneCompatibility.includes(phoneFilter)
+        );
+    }
+    
+    // Filter by grip type
+    if (gripFilter !== 'all') {
+        filteredProducts = filteredProducts.filter(product => 
+            product.type === gripFilter
+        );
+    }
+    
+    loadProducts(filteredProducts);
 }
 
 // Get product color based on image name

@@ -82,6 +82,30 @@
     <section id="products" class="products">
         <div class="container">
             <h2>Our Premium Collection</h2>
+            
+            <!-- Filter Options -->
+            <div class="filter-section">
+                <div class="filter-group">
+                    <label for="phone-filter">Phone Type:</label>
+                    <select id="phone-filter" onchange="filterProducts()">
+                        <option value="all">All Phones</option>
+                        <option value="iphone">iPhone</option>
+                        <option value="samsung">Samsung</option>
+                        <option value="google">Google Pixel</option>
+                        <option value="oneplus">OnePlus</option>
+                        <option value="other">Other Android</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="grip-filter">Grip Type:</label>
+                    <select id="grip-filter" onchange="filterProducts()">
+                        <option value="all">All Types</option>
+                        <option value="classic">Classic PopSocket</option>
+                        <option value="magsafe">MagSafe Compatible</option>
+                    </select>
+                </div>
+            </div>
+            
             <div class="product-grid" id="product-grid">
                 <!-- Products will be dynamically loaded -->
             </div>

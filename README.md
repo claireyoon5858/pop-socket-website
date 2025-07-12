@@ -11,7 +11,10 @@ A modern, responsive e-commerce website for selling PopSockets (phone grips). Bu
 - Mobile-first approach
 
 ### 🛒 E-commerce Functionality
-- Product catalog with 6 different PopSocket designs
+- Product catalog with 12 different PopSocket designs
+- **MagSafe compatible grips** for iPhone 12 and newer
+- **Phone compatibility filtering** (iPhone, Samsung, Google Pixel, OnePlus, Other Android)
+- **Grip type filtering** (Classic vs MagSafe)
 - Shopping cart with add/remove functionality
 - Real-time cart total calculation
 - Checkout simulation
@@ -34,14 +37,23 @@ A modern, responsive e-commerce website for selling PopSockets (phone grips). Bu
 
 ## Product Collection
 
-The website features 6 premium PopSocket designs:
+The website features 12 premium PopSocket designs across two categories:
 
+### Classic PopSockets (Universal Compatibility)
 1. **Classic Black** - $14.99
 2. **Rainbow Gradient** - $16.99
 3. **Marble Pattern** - $18.99
 4. **Glitter Gold** - $19.99
 5. **Clear Transparent** - $15.99
 6. **Neon Pink** - $17.99
+
+### MagSafe PopSockets (iPhone 12+ Compatible)
+7. **MagSafe Black** - $24.99
+8. **MagSafe Clear** - $26.99
+9. **MagSafe Rainbow** - $28.99
+10. **MagSafe Gold** - $29.99
+11. **MagSafe Marble** - $27.99
+12. **MagSafe Glitter** - $30.99
 
 ## Technical Details
 
